@@ -1,65 +1,43 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const [data, setData] = useState({});
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+  const fetchData = async () => {
+    axios
+      .get("https://covid.ourworldindata.org/data/owid-covid-data.json")
+      .then((response) => {
+        const data = response.data;
+        setData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+  useEffect(() => {
+    fetchData();
+  }, [3000]);
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  console.log(data);
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+  // total vaccinari global
+  // console.log(data.OWID_WRL.data.slice(-1)[0].total_vaccinations);
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+  // procent populatia globala a facut minim un vaccin
+  // console.log(data.OWID_WRL.data.slice(-1)[0].people_vaccinated_per_hundred);
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+  // procentaj din populatie fully vaccinated per tara (2 doze)
+  // console.log(data.ROU.data.slice(-1)[0].people_fully_vaccinated_per_hundred);
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+  // vaccinari noi per tara
+  // console.log(data.ROU.data.slice(-1)[0].new_vaccinations);
+
+  // vaccinari totale per tara
+  // console.log(data.ROU.data.slice(-1)[0].people_fully_vaccinated + data.ROU.data.slice(-1)[0].people_vaccinated
+
+  //Sursa: https://ourworldindata.org/ - Our World in Data
+
+  return <div></div>;
 }
