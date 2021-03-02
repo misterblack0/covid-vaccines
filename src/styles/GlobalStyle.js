@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     --fz-xl: 20px;
     --fz-xxl: 22px;
 
-    --border-radius: 3px;
+    --border-radius: 5px;
     --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--white);
     color: var(--gray);
     font-family: var(--font);
-    font-size: var(--fz-lg);
+    font-size: var(--fz-md);
     line-height: 1.5;
   }
 
@@ -55,6 +55,8 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     min-height: 100vh;
   }
+  
+
 
 `;
 

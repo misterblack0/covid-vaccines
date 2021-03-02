@@ -11,13 +11,13 @@ const StyledContent = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <div id="root">
+    <main>
       <GlobalStyle />
       <StyledContent>
         {children}
         {/* <Footer /> */}
       </StyledContent>
-    </div>
+    </main>
   );
 };
 

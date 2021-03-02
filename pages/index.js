@@ -1,6 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import Layout from "../src/components/Layout";
+
+const StyledPage = styled.div`
+  ${"" /* background-color: yellow; */}
+  margin: 10rem 25rem;
+`;
+
+const GlobalData = styled.div`
+  display: flex;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  background-color: yellow;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+  }
+`;
 
 export default function Home() {
   const [data, setData] = useState({});
@@ -19,7 +40,7 @@ export default function Home() {
     getData();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   // total vaccinari global
   // console.log(data.OWID_WRL.data.slice(-2)[0].total_vaccinations);
@@ -40,8 +61,22 @@ export default function Home() {
 
   return (
     <Layout>
-      <div>{data.OWID_WRL && data.OWID_WRL.data.slice(-1)[0].total_vaccinations}</div>
-      <div>{data.ROU && data.ROU.data.slice(-2)[0].new_vaccinations}</div>
+      <StyledPage>
+        <GlobalData>
+          <div>
+            <span>{data.OWID_WRL && data.OWID_WRL.data.slice(-1)[0].total_vaccinations}</span>
+            <p>vaccines administered around the world</p>
+          </div>
+          <div>
+            <span>
+              {data.OWID_WRL && data.OWID_WRL.data.slice(-2)[0].people_vaccinated_per_hundred + "%"}
+            </span>
+            <p>of the global population received at least 1 dose of vaccine</p>
+          </div>
+        </GlobalData>
+
+        {/* <div>{data.ROU && data.ROU.data.slice(-2)[0].new_vaccinations}</div> */}
+      </StyledPage>
     </Layout>
   );
 }
