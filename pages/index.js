@@ -12,7 +12,7 @@ const GlobalData = styled.div`
   display: flex;
   justify-content: center;
   border-radius: var(--border-radius);
-  background-color: yellow;
+  background-color: #cdeb8b;
 
   div {
     display: flex;
@@ -23,7 +23,7 @@ const GlobalData = styled.div`
   }
 `;
 
-export default function Home() {
+const Home = () => {
   const [data, setData] = useState({});
 
   const getData = async () => {
@@ -39,8 +39,6 @@ export default function Home() {
   useEffect(() => {
     getData();
   }, []);
-
-  // console.log(data);
 
   // total vaccinari global
   // console.log(data.OWID_WRL.data.slice(-2)[0].total_vaccinations);
@@ -59,6 +57,8 @@ export default function Home() {
 
   //Sursa: https://ourworldindata.org/ - Our World in Data
 
+  console.log(data);
+
   return (
     <Layout>
       <StyledPage>
@@ -74,9 +74,9 @@ export default function Home() {
             <p>of the global population received at least 1 dose of vaccine</p>
           </div>
         </GlobalData>
-
-        {/* <div>{data.ROU && data.ROU.data.slice(-2)[0].new_vaccinations}</div> */}
       </StyledPage>
     </Layout>
   );
-}
+};
+
+export default Home;
